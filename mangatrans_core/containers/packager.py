@@ -1,7 +1,9 @@
-"""Output container assembly (.cbz, .pdf, .zip, single image) and partial resume tracking."""
+"""Output container assembly (.cbz, .pdf, .zip, .cbr, .rar, single image) and partial resume tracking."""
 
 import os
 import shutil
+import subprocess
+import sys
 import tarfile
 import zipfile
 from typing import List
@@ -68,6 +70,31 @@ def pack_output_pages(page_paths: List[str], output_path: str, format_ext: str) 
                 arcname = f"{idx + 1:04d}{os.path.splitext(p)[1]}"
                 tf.add(p, arcname=arcname)
         return output_path
+
+    elif fmt in (".cbr", ".rar"):
+        rar_bin = shutil.which("rar")
+        if not rar_bin and sys.platform == "win32":
+            for cand in [
+                r"C:\Program Files\WinRAR\Rar.exe",
+                r"C:\Program Files (x86)\WinRAR\Rar.exe",
+            ]:
+                if os.path.isfile(cand):
+                    rar_bin = cand
+                    break
+
+        if rar_bin:
+            if os.path.exists(output_path):
+                os.remove(output_path)
+            subprocess.run([rar_bin, "a", "-inul", "-ep", output_path] + page_paths, check=True)
+            return output_path
+        else:
+            raise RuntimeError(
+                "Packaging as .cbr/.rar requires the 'rar' command-line compression tool.\n"
+                "  - Linux: sudo apt install rar\n"
+                "  - macOS: brew install rar\n"
+                "  - Windows: Install WinRAR (adds Rar.exe)\n"
+                "Tip: .cbz (Comic Book ZIP) is the universal open standard and works everywhere out-of-the-box."
+            )
 
     else:
         os.makedirs(output_path, exist_ok=True)

@@ -146,9 +146,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     trans.add_argument(
         "-f", "--format", metavar="FMT",
-        choices=["cbz", "zip", "pdf", "tar", "folder", "webp", "png", "jpg"],
+        choices=["cbz", "cbr", "rar", "zip", "pdf", "tar", "folder", "webp", "png", "jpg"],
         default=None,
-        help="Output format: cbz zip pdf tar folder webp png jpg  (default: mirrors input).",
+        help="Output format: cbz cbr rar zip pdf tar folder webp png jpg  (default: mirrors input).",
     )
     trans.add_argument(
         "-o", "--output", metavar="PATH", default=None,

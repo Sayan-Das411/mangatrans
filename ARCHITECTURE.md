@@ -189,3 +189,17 @@ An in-memory LRU cache memoizes `(line, font_id, sym_font_id) \rightarrow \text{
 - **Overlapped Pipeline Prefetching**: When processing page $N$ (vision and typesetting), the background `ThreadPoolExecutor` concurrently queries Gemini for page $N+1$, hiding network latency.
 - **Interruption Recovery**: In-progress translations write incrementally to `.partial.cbz` containers. Rerunning `mangatrans` with `--resume` resumes instantly from the last completed page.
 - **Selective Page Retranslation**: The `--pages` and `--retrans` flags allow re-rendering specific pages without reprocessing an entire volume.
+
+---
+
+## 7. Supported Container Formats
+
+| Container Type | Input Support | Output Support | Notes |
+| :--- | :---: | :---: | :--- |
+| **CBZ (Comic ZIP)** | ✔ | ✔ | Universal open comic standard |
+| **ZIP** | ✔ | ✔ | Standard archive packaging |
+| **PDF** | ✔ | ✔ | Multi-page raster document |
+| **CBR / RAR** | ✔ | ✔ | Output uses `rar` CLI when available |
+| **TAR / CBT** | ✔ | ✔ | Standard tarball archive |
+| **Image Folders** | ✔ | ✔ | Extracted sequential image directory |
+| **Standalone Images** | ✔ | ✔ | WEBP, PNG, JPG, BMP, TIFF |

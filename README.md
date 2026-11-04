@@ -180,7 +180,7 @@ python3 -m mangatrans_core manga.cbz -k AIzaSyOneShotKey...
 | **Comic Book ZIP** | `.cbz` | ✔ | ✔ (Default) |
 | **Standard ZIP** | `.zip` | ✔ | ✔ |
 | **PDF Document** | `.pdf` | ✔ | ✔ |
-| **Comic Book RAR** | `.cbr`, `.rar` | ✔ | — |
+| **Comic Book RAR** | `.cbr`, `.rar` | ✔ | ✔ (requires `rar`) |
 | **Image Folder** | Directory | ✔ | ✔ |
 | **Standalone Images** | `.webp`, `.png`, `.jpg` | ✔ | ✔ |
 
