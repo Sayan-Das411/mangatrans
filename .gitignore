@@ -48,3 +48,9 @@ Thumbs.db
 # Local configuration & credentials
 config.json
 cooldowns.json
+
+# Old versions
+mangatrans.bak
+
+# Original icon image
+mangatrans-original.png

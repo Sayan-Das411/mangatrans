@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="mangatrans.png" alt="MangaTrans" width="160"/>
+</p>
+
 # MangaTrans 🎌
 
 > **Lightweight, Cloud-Powered Manga & Comic Scanlation Engine**  
